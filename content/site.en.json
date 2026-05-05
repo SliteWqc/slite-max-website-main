@@ -1,0 +1,158 @@
+{
+  "site": {
+    "brand": "slite",
+    "pageTitleSuffix": "slite.audio",
+    "home": {
+      "pageTitle": "slite.audio / Tools & Sounds",
+      "metaDescription": "-",
+      "label": "SLITE / MAX FOR LIVE TOOLS",
+      "title": "Slite's Max Tools",
+      "subtitle": "Two Max for Live devices that let you work fast\nwith batch operations in Arrangement View"
+    }
+  },
+  "footer": {
+    "note": "More content coming soon..",
+    "metaLabel": "SLITE AUDIO",
+    "aboutLabel": "About Me",
+    "legalLabel": "Policies",
+    "bilibiliLabel": "Bilibili"
+  },
+  "links": {
+    "bilibiliUrl": "https://space.bilibili.com/11338542?spm_id_from=333.1007.0.0"
+  },
+  "ui": {
+    "cards": {
+      "kicker": "Product",
+      "ctaLabel": "enter"
+    },
+    "productPage": {
+      "backLabel": "Back",
+      "downloadLabel": "Download",
+      "contentKicker": "Content",
+      "contentTitle": ""
+    }
+  },
+  "pages": {
+    "about": {
+      "slug": "about",
+      "pageTitle": "About Me / slite.audio",
+      "metaDescription": "This page will hold slite's official profile, credits, and sound-design biography.",
+      "kicker": "",
+      "title": "About Me",
+      "intro": "",
+      "sections": []
+    },
+    "legal": {
+      "slug": "policies",
+      "pageTitle": "Policies / slite.audio",
+      "metaDescription": "Site terms, download license notes, disclaimers, and copyright information for slite.audio.",
+      "kicker": "",
+      "title": "Policies",
+      "intro": "This page explains the basic usage rules for the Max for Live devices, sample packs, sound libraries, project files, and other digital content currently or later provided through slite.audio. By visiting, downloading, or using content from this site, you acknowledge that you have read and accepted the following notes.",
+      "sections": [
+        {
+          "heading": "1. Scope of Use",
+          "body": "The pages, images, text, audio content, device screenshots, downloads, and documentation shown on this site are part of the current slite.audio release materials. You may visit the site to learn about products, audition content, check compatibility, or study the materials for personal reference, but you may not copy, mirror, scrape, or redistribute the whole site in a misleading or bulk manner."
+        },
+        {
+          "heading": "2. Digital Downloads and License",
+          "body": "Unless a specific product page states otherwise, Max for Live devices, sample packs, sound libraries, and other digital downloads from this site are licensed only to the user who lawfully obtains them. You may use licensed content in your own music production, sound design, practice, commercial projects, or non-commercial projects, but you may not repackage, resell, share, upload, sublicense, or republish the original files, sample packs, project packs, device files, or lightly modified versions as a new library."
+        },
+        {
+          "heading": "3. Intellectual Property and Credit",
+          "body": "Except for new works you create while using these resources, the original downloads and the site's brand presentation, images, text, and structural design remain owned by slite.audio or their respective right holders. If a page, package, or collaboration requires credit, follow the exact wording provided in that page or resource notes."
+        },
+        {
+          "heading": "4. Downloads, Updates, and Refunds",
+          "body": "Once digital content has been delivered, it usually cannot be returned or exchanged in the same way as a physical product. If a resource page states a specific trial, update, replacement, or refund rule, that page takes priority. slite.audio may optimize content, update compatibility, add materials, change download methods, or remove old version links without prior notice."
+        },
+        {
+          "heading": "5. Compatibility and Disclaimer",
+          "body": "I try to make sure the tools, assets, and documentation provided here are usable at the time of release, but I cannot guarantee that they will suit every system, DAW version, third-party plug-in setup, workflow, or commercial purpose. Please test and back up your work before using them in important projects. slite.audio is not responsible for indirect losses caused by software compatibility, user error, third-party environments, file corruption, failed downloads, or project interruption beyond what is strictly required by law."
+        },
+        {
+          "heading": "6. External Links and Third-Party Platforms",
+          "body": "This site may link to Bilibili, download hosts, payment pages, or other third-party platforms. Pages, terms of service, privacy policies, payment rules, and data handling after you leave this site are controlled by the corresponding platform. slite.audio cannot guarantee the continuing availability or accuracy of third-party content."
+        },
+        {
+          "heading": "7. Updates and Contact",
+          "body": "As this site expands to include more tools, sample packs, sound libraries, and portfolio materials, this policies page may continue to be updated. Continued use of the site means you accept the latest version. If you have questions about licensing, collaboration, infringement, or download issues, contact me through the public channels linked on the site; for now, the Bilibili profile is the preferred contact route."
+        }
+      ]
+    }
+  },
+  "products": [
+    {
+      "slug": "renamer",
+      "title": "Renamer",
+      "subtitle": "Batch clip naming tool",
+      "description": "Batch-renames clips around selected tracks and loop ranges.",
+      "downloadUrl": "../../../downloads/slite-clip-renamer-1.0-en.zip",
+      "image": "assets/images/renamer.png",
+      "homeCardRole": "wide",
+      "detailPlaceholder": "",
+      "detailSections": [
+        {
+          "heading": "1. What It Is",
+          "body": "Renamer is a batch clip-renaming device for Ableton Live Arrangement View. Its goal is not to export audio, but to capture a clear set of arrangement clips during the editing stage, preview the naming result through rules, and then write the final names back into the Live Set in one pass."
+        },
+        {
+          "heading": "2. How Capture Works",
+          "body": "Renamer first creates a fixed set of clips to rename. It supports two track scopes only: the currently selected track, or all tracks. Each scope can optionally use the current loop range, which creates four fixed capture entries. Normal TRACK / TRACKS capture ignores the loop, while the two IN LOOP modes only include clips that overlap the current loop range."
+        },
+        {
+          "heading": "3. What You Can Control",
+          "body": "Renamer currently lets you control these naming rules: root, replace, remove, insert, locator, track, and index. You can capture first, enable or adjust rules one by one, and watch the result through the before / after preview. Names are only written back to Live after you press RENAME."
+        },
+        {
+          "heading": "4. What Preview Means",
+          "body": "before shows the original names recorded at capture time, and after shows the target names produced by the active rules. They are not two separate sets of objects; they are a before-and-after view of the same captured clips. Rule changes, loop changes, locator names, and track names can refresh the preview, but if the target clip set itself changes, such as adding, deleting, moving clips, or switching to another track set, you must capture again."
+        },
+        {
+          "heading": "5. Known Boundaries",
+          "body": "Renamer does not support free matrix-style multi-track selection. IN LOOP modes require a valid loop in the current Live Set. If replace is enabled but target is empty, it has no practical effect. If locator is enabled but no matching locator segment exists inside the loop, the result may not be what you expect. If the target range changes after capture, changing rules alone will not update the current rename targets; capture again."
+        },
+        {
+          "heading": "6. Status Feedback",
+          "body": "Renamer does not have a separate colored status strip like Exporter. Its feedback is mainly delivered through device output messages, such as capture success, no matching target clips, unavailable loop, no active rules, or how many clips were renamed. These messages tell you whether the current action succeeded and whether you need to check the loop, track range, or rule state first."
+        }
+      ]
+    },
+    {
+      "slug": "exporter",
+      "title": "Exporter",
+      "subtitle": "Multi-function batch clip export tool",
+      "description": "Flexible export settings and easier multi-clip selection for faster large-scale clip export inside Live.",
+      "downloadUrl": "../../../downloads/slite-clip-exporter-1.0-en.zip",
+      "image": "assets/images/exporter.png",
+      "homeCardRole": "standard",
+      "detailPlaceholder": "",
+      "detailSections": [
+        {
+          "heading": "1. What It Is",
+          "body": "Exporter is a batch clip-export device for Ableton Live Arrangement View. It does not freely combine arbitrary track selections. Instead, it captures the current export set first, then exports that frozen set in batch using the current settings."
+        },
+        {
+          "heading": "2. How Capture Works",
+          "body": "Exporter uses the same capture idea as Renamer: first define the clips to process, then perform the next operation on that fixed set. It supports two track scopes only: the currently selected track, or all tracks. Combined with whether the current loop range is used, this creates four fixed capture modes: single track, single track in loop, all tracks, and all tracks in loop. Preview and Export only apply to the set created by the latest capture."
+        },
+        {
+          "heading": "3. What You Can Control",
+          "body": "Current export controls include sample rate, bit depth, channel, normalize, peak ceiling, clip gain, export folder, and preview for checking the result. You can capture first, then adjust the shared export settings for that batch of clips before exporting."
+        },
+        {
+          "heading": "4. What Preview Means",
+          "body": "Preview does not show every clip in the entire Arrangement. It shows the export set frozen by the latest capture. Its purpose is to help confirm whether the current export target is correct. If you changed tracks, loop, source, or consolidate state but preview did not change, you usually need to capture again."
+        },
+        {
+          "heading": "5. Known Boundaries",
+          "body": "Important boundaries include: if a clip source changes after capture, Exporter blocks export for safety; fresh consolidate can behave differently across platforms, especially on Windows where saving and reopening the Set before capturing again is recommended; resample and bounce clips may also differ on Windows; if the saved export path is missing, the old path may still be shown, but export is blocked until you choose a valid folder again."
+        },
+        {
+          "heading": "6. Status Feedback",
+          "body": "Exporter uses three colors for status feedback: red means error and requires action first; green means success and the export has completed; yellow means notice, usually a reminder such as duplicate clip names. Yellow does not stop export, but it is worth checking."
+        }
+      ]
+    }
+  ]
+}

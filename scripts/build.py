@@ -15,6 +15,7 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT_PATH = ROOT / "content" / "site.json"
+EN_CONTENT_PATH = ROOT / "content" / "site.en.json"
 COPY_WORKBOOK_PATH = ROOT / "content" / "site-copy.xlsx"
 TEMPLATES_DIR = ROOT / "templates"
 ASSETS_DIR = ROOT / "assets"
@@ -23,10 +24,32 @@ DIST_DIR = ROOT / "dist"
 COPY_SCRIPT_PATH = ROOT / "scripts" / "copy_workbook.mjs"
 NODE_BIN = Path("/Users/slite/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node")
 EXCLUDED_COPY_KEYS = {"slug", "image", "homeCardRole"}
+LOCALES = {
+    "zh": {
+        "html_lang": "zh-CN",
+        "content_path": CONTENT_PATH,
+        "output_prefix": "",
+        "language_label": "EN",
+        "target_language": "en",
+        "image_alt_suffix": "界面预览",
+    },
+    "en": {
+        "html_lang": "en",
+        "content_path": EN_CONTENT_PATH,
+        "output_prefix": "en",
+        "language_label": "中文",
+        "target_language": "zh",
+        "image_alt_suffix": "interface preview",
+    },
+}
 
 
 def load_content() -> dict:
     return json.loads(CONTENT_PATH.read_text(encoding="utf-8"))
+
+
+def load_locale_content(locale_key: str) -> dict:
+    return json.loads(LOCALES[locale_key]["content_path"].read_text(encoding="utf-8"))
 
 
 def save_content(content: dict) -> None:
@@ -289,7 +312,39 @@ def copy_static_assets() -> None:
     copy_tree(PUBLIC_DIR, DIST_DIR)
 
 
-def render_footer_subs(content: dict, assets_prefix: str) -> dict[str, str]:
+def output_base(locale_key: str) -> Path:
+    prefix = LOCALES[locale_key]["output_prefix"]
+    return DIST_DIR / prefix if prefix else DIST_DIR
+
+
+def locale_root_href(locale_key: str, page_depth: str) -> str:
+    if page_depth == "home":
+        return "." if locale_key == "zh" else "."
+    if page_depth == "product":
+        return "../.."
+    return ".."
+
+
+def language_href(locale_key: str, page_depth: str, slug: str | None = None) -> str:
+    if locale_key == "zh":
+        if page_depth == "home":
+            return "en/"
+        if page_depth == "product" and slug:
+            return f"../../en/products/{slug}/"
+        if page_depth == "basic" and slug:
+            return f"../en/{slug}/"
+        return "en/"
+
+    if page_depth == "home":
+        return "../"
+    if page_depth == "product" and slug:
+        return f"../../../products/{slug}/"
+    if page_depth == "basic" and slug:
+        return f"../../{slug}/"
+    return "../"
+
+
+def render_footer_subs(content: dict, root_href: str) -> dict[str, str]:
     footer = content["footer"]
     return {
         "footer_note": footer["note"],
@@ -297,22 +352,25 @@ def render_footer_subs(content: dict, assets_prefix: str) -> dict[str, str]:
         "footer_about_label": footer["aboutLabel"],
         "footer_legal_label": footer["legalLabel"],
         "footer_bilibili_label": footer["bilibiliLabel"],
-        "about_href": f"{assets_prefix}/about/",
-        "legal_href": f"{assets_prefix}/legal/",
+        "about_href": f"{root_href}/about/",
+        "legal_href": f"{root_href}/{content['pages']['legal']['slug']}/",
         "bilibili_url": content["links"]["bilibiliUrl"],
         "year": str(datetime.now().year),
     }
 
 
-def render_product_cards(content: dict) -> str:
+def render_product_cards(content: dict, locale_key: str, assets_prefix: str) -> str:
     cards = []
     ui_cards = content["ui"]["cards"]
+    aria_template = "进入 {title} 详情页" if locale_key == "zh" else "Open {title} details"
+    alt_template = "{title} 界面缩略图" if locale_key == "zh" else "{title} interface thumbnail"
     for product in content["products"]:
         role_class = f" product-link--{product.get('homeCardRole', 'standard')}"
+        image_src = f"{assets_prefix}/{product['image']}"
         cards.append(
             f"""
-        <a class="product-link{role_class}" href="products/{escape(product['slug'])}/" aria-label="进入 {escape(product['title'])} 详情页">
-          <img class="product-shot" src="{escape(product['image'])}" alt="{escape(product['title'])} 界面缩略图" />
+        <a class="product-link{role_class}" href="products/{escape(product['slug'])}/" aria-label="{escape(aria_template.format(title=product['title']))}">
+          <img class="product-shot" src="{escape(image_src)}" alt="{escape(alt_template.format(title=product['title']))}" />
           <div class="product-overlay">
             <div class="product-meta">
               <div>
@@ -347,6 +405,12 @@ def render_heading_block(text: str, level: str = "h2") -> str:
     if not text.strip():
         return ""
     return f"<{level}>{escape(text)}</{level}>"
+
+
+def render_home_title(text: str) -> str:
+    if text == "Slite's Max Tools":
+        return 'Slite&#x27;s <span class="brand-phrase">Max Tools</span>'
+    return escape(text)
 
 
 def render_product_detail_content(product: dict) -> str:
@@ -384,33 +448,46 @@ def render_page_sections_block(sections: list[dict]) -> str:
     )
 
 
-def build_home(content: dict) -> None:
+def build_home(content: dict, locale_key: str) -> None:
     template = load_template("index.html.tmpl")
     site = content["site"]
+    locale = LOCALES[locale_key]
+    assets_prefix = "." if locale_key == "zh" else ".."
     html = template.substitute(
+        html_lang=locale["html_lang"],
         page_title=site["home"]["pageTitle"],
         meta_description=site["home"]["metaDescription"],
-        assets_prefix=".",
+        assets_prefix=assets_prefix,
+        language_href=language_href(locale_key, "home"),
+        language_label=locale["language_label"],
+        target_language=locale["target_language"],
         brand_label=site["home"]["label"],
-        hero_title=site["home"]["title"],
+        hero_title=render_home_title(site["home"]["title"]),
         hero_subtitle=site["home"]["subtitle"],
-        product_cards=render_product_cards(content),
-        **render_footer_subs(content, "."),
+        product_cards=render_product_cards(content, locale_key, assets_prefix),
+        **render_footer_subs(content, locale_root_href(locale_key, "home")),
     )
-    write_file(DIST_DIR / "index.html", html)
+    write_file(output_base(locale_key) / "index.html", html)
 
 
-def build_product_pages(content: dict) -> None:
+def build_product_pages(content: dict, locale_key: str) -> None:
     template = load_template("product.html.tmpl")
     site = content["site"]
     ui = content["ui"]["productPage"]
+    locale = LOCALES[locale_key]
     for product in content["products"]:
+        assets_prefix = "../.." if locale_key == "zh" else "../../.."
+        home_href = "../.." if locale_key == "zh" else "../.."
         html = template.substitute(
+            html_lang=locale["html_lang"],
             page_title=f"{product['title']} / {site['pageTitleSuffix']}",
             meta_description=product["description"],
-            assets_prefix="../..",
+            assets_prefix=assets_prefix,
+            language_href=language_href(locale_key, "product", product["slug"]),
+            language_label=locale["language_label"],
+            target_language=locale["target_language"],
             brand_label=site["home"]["label"],
-            home_href="../..",
+            home_href=home_href,
             back_label=ui["backLabel"],
             product_title=product["title"],
             product_subtitle=product["subtitle"],
@@ -418,40 +495,53 @@ def build_product_pages(content: dict) -> None:
             download_label=ui["downloadLabel"],
             download_url=product["downloadUrl"],
             download_filename=Path(product["downloadUrl"]).name,
-            product_image=f"../../{product['image']}",
+            product_image=f"{assets_prefix}/{product['image']}",
+            product_image_alt=f"{product['title']} {locale['image_alt_suffix']}",
             content_kicker=ui["contentKicker"],
             content_title_block=render_heading_block(ui["contentTitle"], "h2"),
             detail_content=render_product_detail_content(product),
-            **render_footer_subs(content, "../.."),
+            **render_footer_subs(content, locale_root_href(locale_key, "product")),
         )
-        write_file(DIST_DIR / "products" / product["slug"] / "index.html", html)
+        write_file(output_base(locale_key) / "products" / product["slug"] / "index.html", html)
 
 
-def build_basic_pages(content: dict) -> None:
+def build_basic_pages(content: dict, locale_key: str) -> None:
     template = load_template("basic.html.tmpl")
     back_label = content["ui"]["productPage"]["backLabel"]
+    locale = LOCALES[locale_key]
     for page in content["pages"].values():
+        assets_prefix = ".." if locale_key == "zh" else "../.."
         html = template.substitute(
+            html_lang=locale["html_lang"],
             page_title=page["pageTitle"],
             meta_description=page["metaDescription"],
-            assets_prefix="..",
+            assets_prefix=assets_prefix,
+            language_href=language_href(locale_key, "basic", page["slug"]),
+            language_label=locale["language_label"],
+            target_language=locale["target_language"],
             home_href="..",
             back_label=back_label,
             page_kicker=page["kicker"],
             page_heading=page["title"],
             page_intro_block=render_page_intro_block(page["intro"]),
             page_sections_block=render_page_sections_block(page["sections"]),
-            **render_footer_subs(content, ".."),
+            **render_footer_subs(content, locale_root_href(locale_key, "basic")),
         )
-        write_file(DIST_DIR / page["slug"] / "index.html", html)
+        write_file(output_base(locale_key) / page["slug"] / "index.html", html)
 
 
-def build_site(content: dict) -> None:
+def build_site(content: dict | None = None) -> None:
     reset_dist()
     copy_static_assets()
-    build_home(content)
-    build_product_pages(content)
-    build_basic_pages(content)
+    build_content = content or load_locale_content("zh")
+    build_home(build_content, "zh")
+    build_product_pages(build_content, "zh")
+    build_basic_pages(build_content, "zh")
+
+    en_content = load_locale_content("en")
+    build_home(en_content, "en")
+    build_product_pages(en_content, "en")
+    build_basic_pages(en_content, "en")
 
 
 def parse_args() -> argparse.Namespace:

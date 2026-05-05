@@ -24,3 +24,15 @@ if ("IntersectionObserver" in window) {
 } else {
   revealNodes.forEach((node) => node.classList.add("is-visible"));
 }
+
+document.querySelectorAll(".language-switch[data-language]").forEach((link) => {
+  link.addEventListener("click", () => {
+    const language = link.dataset.language;
+
+    if (!language) {
+      return;
+    }
+
+    document.cookie = `slite_language=${language}; Path=/; Max-Age=31536000; SameSite=Lax`;
+  });
+});

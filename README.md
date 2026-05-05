@@ -5,7 +5,7 @@
 ## 目录说明
 
 - `assets/`: 站点共享静态资源，例如图片、CSS、前端脚本
-- `content/site.json`: 站点内容、产品文案、页脚信息、About / Legal 页面内容
+- `content/site.json`: 站点内容、产品文案、页脚信息、About / Policies 页面内容
 - `content/site-copy.xlsx`: 给你直接改文案用的 Excel 工作簿
 - `templates/`: 首页和产品详情页模板
 - `scripts/build.py`: 静态站生成脚本，同时负责导出/导入文案工作簿
@@ -34,7 +34,7 @@ python3 -m http.server 4173 --directory dist
 
 最常改的地方：
 
-- 改产品文案、页脚文案、About / Legal：`content/site.json`
+- 改产品文案、页脚文案、About / Policies：`content/site.json`
 - 或者直接改 `content/site-copy.xlsx`，再导回内容源
 - 改页面结构：`templates/index.html.tmpl`、`templates/product.html.tmpl`
 - 改样式和动效：`assets/styles/site.css`、`assets/scripts/site.js`

@@ -14,7 +14,7 @@
     "note": "更多内容敬请期待..",
     "metaLabel": "SLITE AUDIO",
     "aboutLabel": "About Me",
-    "legalLabel": "Legal",
+    "legalLabel": "Policies",
     "bilibiliLabel": "Bilibili"
   },
   "links": {
@@ -43,11 +43,11 @@
       "sections": []
     },
     "legal": {
-      "slug": "legal",
-      "pageTitle": "Legal / slite.audio",
+      "slug": "policies",
+      "pageTitle": "Policies / slite.audio",
       "metaDescription": "slite.audio 的站点使用说明、下载与授权约定、免责声明与版权条款。",
       "kicker": "",
-      "title": "Legal",
+      "title": "Policies",
       "intro": "本页用于说明 slite.audio 当前和后续提供的 Max for Live 工具、sample pack、sound library、项目文件及其他数字内容的基础使用规则。访问、下载或使用本站内容，即视为你已阅读并同意以下说明。",
       "sections": [
         {
