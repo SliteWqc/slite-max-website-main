@@ -87,10 +87,36 @@
       "title": "Renamer",
       "subtitle": "Clips批量命名工具",
       "description": "围绕选中轨道、循环范围完成批量重命名",
-      "downloadUrl": "https://example.com/download/renamer",
+      "downloadUrl": "../../downloads/slite-clip-renamer-1.0.zip",
       "image": "assets/images/renamer.png",
       "homeCardRole": "wide",
-      "detailPlaceholder": "这里预留 Renamer 的完整说明书内容。后续你把正式文案发给我后，我会直接把这一整块替换成完整介绍、使用方法和需要补充的技术说明。"
+      "detailPlaceholder": "",
+      "detailSections": [
+        {
+          "heading": "1. 它是什么",
+          "body": "Renamer 是一个面向 Ableton Live Arrangement View 的批量 clip 重命名工具。它的核心目标不是导出音频，而是在编排阶段先 capture 一组明确的 arrangement clips，再通过规则 preview 结果，最后统一把新名称写回工程。"
+        },
+        {
+          "heading": "2. Capture 如何工作",
+          "body": "Renamer 通过固定的 capture 方式先建立一组待命名 clips。它只支持两种轨道范围：当前选中轨道，或全部轨道；在此基础上再叠加是否使用当前 loop 范围，于是形成 4 种固定 capture 入口。普通 TRACK / TRACKS 会忽略当前 loop，而两个 IN LOOP 模式只会纳入与当前 loop 区间发生重叠的 clips。"
+        },
+        {
+          "heading": "3. 你可以控制什么",
+          "body": "Renamer 当前可控制的命名规则包括：root、replace、remove、insert、locator、track、index。你可以先 capture，再逐条开启或调整规则，通过 before / after 预览观察变化；真正写回 Live 只会发生在点击 RENAME 之后。"
+        },
+        {
+          "heading": "4. Preview 的意义",
+          "body": "before 显示的是 capture 时记录下来的原始名称，after 显示的是当前规则叠加后的目标名称。它们不是两组独立对象，而是同一批已 capture clips 的前后对照。规则、loop、locator 名称或轨道名变化时，preview 会更新；但如果目标集合本身变了，比如新增、删除、移动了 clips，或者你切换到另一组轨道，就必须重新 capture。"
+        },
+        {
+          "heading": "5. 已知边界",
+          "body": "当前需要注意的边界包括：Renamer 不支持矩阵式任意多轨自由组合命名；IN LOOP 模式要求当前工程已经存在有效 loop；replace 开启但 target 为空时不会产生实际效果；locator 开启但 loop 内没有可归属的 locator 名称时不会按预期生效；此外，如果 capture 后目标范围发生变化，仅改规则并不会自动更新本次命名对象，必须重新 capture。"
+        },
+        {
+          "heading": "6. 状态反馈",
+          "body": "Renamer 当前没有像 Exporter 那样独立的彩色状态栏，它的反馈主要通过设备输出消息给出。例如 capture 成功、没有命中目标 clips、loop 不可用、没有 active rules、或 rename 已执行在多少个 clips 上，都会以文字结果提示。可以把这些消息理解为当前动作是否成功、是否需要先检查 loop、轨道范围或规则状态。"
+        }
+      ]
     },
     {
       "slug": "exporter",
@@ -108,7 +134,7 @@
         },
         {
           "heading": "2. Capture 如何工作",
-          "body": "Capture 决定本次要导出的 clips 到底是谁。它只支持两种轨道范围：当前单个选中轨道，或全部轨道；再结合是否叠加 loop 范围，形成 4 种固定 capture 模式：单轨、单轨并叠加 loop、全轨、全轨并叠加 loop。Preview 和 Export 都只会针对这一次 capture 得到的集合生效。"
+          "body": "Exporter 沿用了与 Renamer 一致的 capture 思路：先确定本次要处理的 clips 集合，再统一执行后续操作。它只支持两种轨道范围：当前单个选中轨道，或全部轨道；再结合是否叠加 loop 范围，形成 4 种固定 capture 模式：单轨、单轨并叠加 loop、全轨、全轨并叠加 loop。Preview 和 Export 都只会针对这一次 capture 得到的集合生效。"
         },
         {
           "heading": "3. 你可以控制什么",

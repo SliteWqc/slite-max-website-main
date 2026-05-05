@@ -403,8 +403,21 @@ a {
   border-top: 1px solid var(--line);
 }
 
+.content-placeholder > div {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 160px minmax(0, 760px);
+  column-gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+
 .content-placeholder .section-kicker {
   display: block;
+  margin: 0;
+  grid-column: 1 / -1;
+  align-self: start;
+  padding-top: 4px;
   margin-bottom: 26px;
 }
 
@@ -417,6 +430,11 @@ a {
 
 .content-placeholder p {
   max-width: 54rem;
+}
+
+.detail-flow {
+  grid-column: 2;
+  margin-top: 18px;
 }
 
 .detail-block:first-of-type h3,
@@ -535,6 +553,17 @@ a {
 
   .product-link {
     min-height: 340px;
+  }
+
+  .content-placeholder > div {
+    width: 100%;
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+  }
+
+  .content-placeholder .section-kicker,
+  .detail-flow {
+    grid-column: 1;
   }
 
   .product-link--wide,
