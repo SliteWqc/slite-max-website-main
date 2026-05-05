@@ -139,6 +139,10 @@ a {
   white-space: pre-line;
 }
 
+.text-accent {
+  color: rgba(239, 197, 95, 0.92);
+}
+
 .product-rail {
   display: grid;
   width: 100%;

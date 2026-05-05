@@ -408,9 +408,13 @@ def render_heading_block(text: str, level: str = "h2") -> str:
 
 
 def render_home_title(text: str) -> str:
-    if text == "Slite's Max Tools":
-        return 'Slite&#x27;s <span class="brand-phrase">Max Tools</span>'
+    if text == "Slite's M4L Tools":
+        return 'Slite&#x27;s <span class="brand-phrase">M4L Tools</span>'
     return escape(text)
+
+
+def render_home_subtitle(text: str) -> str:
+    return escape(text).replace("Max for Live", '<span class="text-accent">Max for Live</span>')
 
 
 def render_product_detail_content(product: dict) -> str:
@@ -463,7 +467,7 @@ def build_home(content: dict, locale_key: str) -> None:
         target_language=locale["target_language"],
         brand_label=site["home"]["label"],
         hero_title=render_home_title(site["home"]["title"]),
-        hero_subtitle=site["home"]["subtitle"],
+        hero_subtitle=render_home_subtitle(site["home"]["subtitle"]),
         product_cards=render_product_cards(content, locale_key, assets_prefix),
         **render_footer_subs(content, locale_root_href(locale_key, "home")),
     )
