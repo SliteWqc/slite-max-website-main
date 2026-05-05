@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 from datetime import datetime
@@ -177,6 +178,12 @@ def ensure_node_runtime() -> None:
         raise FileNotFoundError(f"Node runtime not found: {NODE_BIN}")
 
 
+def can_export_copy_workbook() -> bool:
+    if os.environ.get("SKIP_COPY_WORKBOOK_EXPORT") == "1":
+        return False
+    return NODE_BIN.exists()
+
+
 def run_copy_script(command: str, input_path: Path, output_path: Path) -> None:
     ensure_node_runtime()
     subprocess.run(
@@ -187,6 +194,9 @@ def run_copy_script(command: str, input_path: Path, output_path: Path) -> None:
 
 
 def export_copy_workbook(content: dict) -> None:
+    if not can_export_copy_workbook():
+        print("Skipping copy workbook export: local Node runtime is unavailable.")
+        return
     rows = collect_copy_rows(content)
     temp_json = ROOT / "content" / ".site-copy-export.json"
     temp_json.write_text(json.dumps(rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -197,6 +207,7 @@ def export_copy_workbook(content: dict) -> None:
 
 
 def import_copy_workbook() -> dict:
+    ensure_node_runtime()
     content = load_content()
     valid_paths = {path for path, _ in copy_leaf_paths(content)}
     imported_rows = read_copy_workbook_rows(COPY_WORKBOOK_PATH)
@@ -263,7 +274,7 @@ def write_file(path: Path, content: str) -> None:
 
 def reset_dist() -> None:
     if DIST_DIR.exists():
-        shutil.rmtree(DIST_DIR)
+        shutil.rmtree(DIST_DIR, ignore_errors=True)
     DIST_DIR.mkdir(parents=True, exist_ok=True)
 
 
