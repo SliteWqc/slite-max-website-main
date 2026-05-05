@@ -404,11 +404,11 @@ a {
 }
 
 .content-placeholder > div {
-  width: min(100%, 1180px);
+  width: min(100%, 1240px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 160px minmax(0, 760px);
-  column-gap: clamp(32px, 6vw, 96px);
+  grid-template-columns: 120px minmax(0, 920px);
+  column-gap: clamp(28px, 4vw, 56px);
   align-items: start;
 }
 
