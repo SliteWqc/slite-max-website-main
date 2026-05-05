@@ -1,13 +1,15 @@
-# SLITE Product Showcase
+# slite.audio Static Site
 
 这是一个适合长期维护的静态多页面产品站。源码和部署产物已经分开：你平时只需要修改内容源文件，构建后的可发布站点统一输出到 `dist/`。
 
 ## 目录说明
 
 - `assets/`: 站点共享静态资源，例如图片、CSS、前端脚本
-- `content/products.json`: 产品内容、下载链接、首页卡片配置
+- `content/site.json`: 站点内容、产品文案、页脚信息、About / Legal 页面内容
+- `content/site-copy.xlsx`: 给你直接改文案用的 Excel 工作簿
 - `templates/`: 首页和产品详情页模板
-- `scripts/build.py`: 静态站生成脚本
+- `scripts/build.py`: 静态站生成脚本，同时负责导出/导入文案工作簿
+- `scripts/copy_workbook.mjs`: Excel 文案工作簿的导出/读取脚本
 - `public/`: 直接复制到最终站点根目录的文件
 - `public/downloads/`: 后续放安装包、压缩包、说明附件的推荐位置
 - `dist/`: 构建产物目录，部署平台发布这个目录
@@ -32,7 +34,8 @@ python3 -m http.server 4173 --directory dist
 
 最常改的地方：
 
-- 改产品文案、简介、下载链接：`content/products.json`
+- 改产品文案、页脚文案、About / Legal：`content/site.json`
+- 或者直接改 `content/site-copy.xlsx`，再导回内容源
 - 改页面结构：`templates/index.html.tmpl`、`templates/product.html.tmpl`
 - 改样式和动效：`assets/styles/site.css`、`assets/scripts/site.js`
 - 放下载文件：`public/downloads/`
@@ -44,6 +47,32 @@ python3 scripts/build.py
 ```
 
 构建完成后，最终可发布文件都会出现在 `dist/`。
+
+## Excel 文案编辑工作流
+
+如果你想更高效地改站内文字，默认走这套：
+
+1. 先正常构建一次，刷新 Excel：
+
+```bash
+python3 scripts/build.py
+```
+
+2. 打开 `content/site-copy.xlsx`
+3. 只编辑 `current_text` 这一列
+4. 保存 Excel
+5. 把改动导回内容源并重新生成网站：
+
+```bash
+python3 scripts/build.py import-copy
+```
+
+这会自动：
+
+- 读取你改过的 Excel
+- 同步回 `content/site.json`
+- 重新构建 `dist/`
+- 再刷新一份新的 `content/site-copy.xlsx`
 
 ## Git 提交流程
 

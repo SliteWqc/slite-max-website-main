@@ -12,13 +12,13 @@
     <main>
       <section class="product-hero">
         <div class="product-copy reveal">
-          <a class="back-link" href="$home_href">返回首页</a>
+          <a class="back-link" href="$home_href">$back_label</a>
           <p class="eyebrow">$brand_label</p>
           <h1>$product_title</h1>
           <p class="product-subtitle">$product_subtitle</p>
           <p class="product-description">$product_description</p>
           <div class="cta-row">
-            <a class="button-primary" href="$download_url" target="_blank" rel="noreferrer">下载占位</a>
+            <a class="button-primary" href="$download_url" download="$download_filename">$download_label</a>
           </div>
         </div>
         <figure class="product-visual reveal">
@@ -28,16 +28,31 @@
 
       <section class="content-placeholder reveal">
         <div>
-          <p class="section-kicker">Content</p>
-          <h2>详细内容占位</h2>
-          <p>$detail_placeholder</p>
+          <p class="section-kicker">$content_kicker</p>
+          $content_title_block
+          $detail_content
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>$footer_note</p>
-      <p class="footer-meta">SLITE TOOLS / $year</p>
+      <div class="footer-copy">
+        <p>$footer_note</p>
+      </div>
+      <div class="footer-links">
+        <a href="$about_href">$footer_about_label</a>
+        <a href="$legal_href">$footer_legal_label</a>
+        <a class="footer-link footer-link--bilibili" href="$bilibili_url" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <path d="M22 12 16 5M42 12l6-7" />
+            <rect x="10" y="14" width="44" height="34" rx="8" ry="8" />
+            <path d="M24 52h16" />
+            <path d="M24 28v6M40 28v6M24 40c2.5 2 5.2 3 8 3s5.5-1 8-3" />
+          </svg>
+          <span>$footer_bilibili_label</span>
+        </a>
+      </div>
+      <p class="footer-meta">$footer_meta_label / $year</p>
     </footer>
   </body>
 </html>

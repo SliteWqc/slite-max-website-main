@@ -8,16 +8,18 @@
     <link rel="stylesheet" href="$assets_prefix/assets/styles/site.css" />
     <script defer src="$assets_prefix/assets/scripts/site.js"></script>
   </head>
-  <body class="page-home">
+  <body class="page-basic">
     <main>
-      <section class="hero hero-home">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">$brand_label</p>
-          <h1 class="brand-mark">$hero_title</h1>
-          <p class="hero-text">$hero_subtitle</p>
+      <section class="basic-hero">
+        <div class="basic-copy reveal">
+          <a class="back-link" href="$home_href">$back_label</a>
+          <p class="eyebrow">$page_kicker</p>
+          <h1>$page_heading</h1>
+          $page_intro_block
         </div>
-        <div class="product-rail">$product_cards</div>
       </section>
+
+      $page_sections_block
     </main>
 
     <footer class="site-footer">

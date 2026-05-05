@@ -1,0 +1,132 @@
+{
+  "site": {
+    "brand": "slite",
+    "pageTitleSuffix": "slite.audio",
+    "home": {
+      "pageTitle": "slite.audio / Tools & Sounds",
+      "metaDescription": "-",
+      "label": "SLITE / MAX FOR LIVE TOOLS",
+      "title": "Slite's Max Tools",
+      "subtitle": "两个能让你在Arrangment View里\n畅快地进行批量操作的Max for Live"
+    }
+  },
+  "footer": {
+    "note": "更多内容敬请期待..",
+    "metaLabel": "SLITE AUDIO",
+    "aboutLabel": "About Me",
+    "legalLabel": "Legal",
+    "bilibiliLabel": "Bilibili"
+  },
+  "links": {
+    "bilibiliUrl": "https://space.bilibili.com/11338542?spm_id_from=333.1007.0.0"
+  },
+  "ui": {
+    "cards": {
+      "kicker": "Product",
+      "ctaLabel": "enter"
+    },
+    "productPage": {
+      "backLabel": "返回",
+      "downloadLabel": "下载",
+      "contentKicker": "Content",
+      "contentTitle": ""
+    }
+  },
+  "pages": {
+    "about": {
+      "slug": "about",
+      "pageTitle": "About Me / slite.audio",
+      "metaDescription": "这里会放 slite 作为音效设计师与音频从业者的正式自我介绍与履历整理。",
+      "kicker": "",
+      "title": "About Me",
+      "intro": "",
+      "sections": []
+    },
+    "legal": {
+      "slug": "legal",
+      "pageTitle": "Legal / slite.audio",
+      "metaDescription": "slite.audio 的站点使用说明、下载与授权约定、免责声明与版权条款。",
+      "kicker": "",
+      "title": "Legal",
+      "intro": "本页用于说明 slite.audio 当前和后续提供的 Max for Live 工具、sample pack、sound library、项目文件及其他数字内容的基础使用规则。访问、下载或使用本站内容，即视为你已阅读并同意以下说明。",
+      "sections": [
+        {
+          "heading": "1. 使用范围",
+          "body": "本站展示的页面、图像、文字、音频内容、工具界面截图、下载资源与相关说明，均属于 slite.audio 当前发布内容的一部分。你可以为了解产品、试听、评估兼容性或个人学习目的访问本站，但不得以误导性方式复制、镜像、批量抓取或重新分发整个站点内容。"
+        },
+        {
+          "heading": "2. 数字下载与授权",
+          "body": "除非具体产品页面另有说明，本站提供的 Max for Live 工具、sample pack、sound library 与其他数字下载内容，默认仅授权合法获取资源的用户本人使用。你可以在自己的音乐制作、声音设计、练习、商业项目或非商业项目中使用已授权内容，但不得将原始文件、采样包、工程包、设备文件或仅做轻微修改后的资源再次打包、转售、共享、上传、转授权或作为素材库重新发布。"
+        },
+        {
+          "heading": "3. 知识产权与署名",
+          "body": "除你在使用这些资源时自行创作的新增作品外，原始下载资源及站点中的品牌呈现、图像、文字和结构设计，相关权利仍归 slite.audio 或各自权利人所有。若某个页面、资源包或合作项目要求署名，应以该页面或资源说明中的具体写法为准。"
+        },
+        {
+          "heading": "4. 下载、更新与退款",
+          "body": "数字内容一经交付，通常不支持像实体商品那样的退换流程；若资源页面另有写明的试用、更新、替换或退款规则，则以对应页面为准。对于后续版本更新、兼容性调整、内容增补或下载方式变化，slite.audio 保留在不预先通知的情况下进行优化或下线旧版本入口的权利。"
+        },
+        {
+          "heading": "5. 兼容性与免责声明",
+          "body": "我会尽量确保站内提供的工具、素材和说明在发布时处于可用状态，但不保证它们一定适用于所有系统环境、DAW 版本、第三方插件组合、操作流程或特定商业用途。请在正式项目中自行完成测试与备份。对于因软件兼容、误操作、第三方环境、文件损坏、下载失败、项目中断或由此引发的间接损失，slite.audio 不承担超出法律强制要求范围之外的责任。"
+        },
+        {
+          "heading": "6. 外部链接与第三方平台",
+          "body": "本站可能包含前往 Bilibili、下载托管页面、支付页面或其他第三方平台的链接。跳转后的页面、服务条款、隐私政策、支付规则与数据处理方式由对应平台自行负责，slite.audio 无法对第三方平台内容的持续可用性与准确性作出保证。"
+        },
+        {
+          "heading": "7. 条款更新与联系",
+          "body": "随着站点内容扩展到更多工具、sample pack、sound library 与个人作品集，本页内容可能会继续更新。若你继续使用本站，即视为接受更新后的版本。若你对授权边界、合作、侵权处理或下载问题有疑问，可通过站内公开的外部联系方式与我取得联系；在当前阶段，可优先通过页面中提供的 Bilibili 主页进行沟通。"
+        }
+      ]
+    }
+  },
+  "products": [
+    {
+      "slug": "renamer",
+      "title": "Renamer",
+      "subtitle": "Clips批量命名工具",
+      "description": "围绕选中轨道、循环范围完成批量重命名",
+      "downloadUrl": "https://example.com/download/renamer",
+      "image": "assets/images/renamer.png",
+      "homeCardRole": "wide",
+      "detailPlaceholder": "这里预留 Renamer 的完整说明书内容。后续你把正式文案发给我后，我会直接把这一整块替换成完整介绍、使用方法和需要补充的技术说明。"
+    },
+    {
+      "slug": "exporter",
+      "title": "Exporter",
+      "subtitle": "多功能Clips批量导出工具",
+      "description": "多样的导出设置和更方便的Clips多选功能，大幅提升在 Live 内大量导出Clips的效率",
+      "downloadUrl": "../../downloads/slite-clip-exporter-1.0.zip",
+      "image": "assets/images/exporter.png",
+      "homeCardRole": "standard",
+      "detailPlaceholder": "",
+      "detailSections": [
+        {
+          "heading": "1. 它是什么",
+          "body": "Exporter 是一个面向 Ableton Live Arrangement View 的批量 clip 导出工具。它的工作方式不是任意自由组合轨道，而是先通过 capture 固定本次导出集合，再统一按当前参数批量输出。"
+        },
+        {
+          "heading": "2. Capture 如何工作",
+          "body": "Capture 决定本次要导出的 clips 到底是谁。它只支持两种轨道范围：当前单个选中轨道，或全部轨道；再结合是否叠加 loop 范围，形成 4 种固定 capture 模式：单轨、单轨并叠加 loop、全轨、全轨并叠加 loop。Preview 和 Export 都只会针对这一次 capture 得到的集合生效。"
+        },
+        {
+          "heading": "3. 你可以控制什么",
+          "body": "当前可控制的导出参数包括：sample rate、bit depth、channel、normalize、peak ceiling、clip gain、export folder，以及用于确认结果的 preview。你可以先 capture，再根据这批 clips 的需要统一调整参数后导出。"
+        },
+        {
+          "heading": "4. Preview 的意义",
+          "body": "Preview 显示的不是整个 Arrangement 里的所有 clips，而是本次 capture 之后冻结下来的导出集合。它的作用是帮助你确认当前这次准备导出的内容是否正确；如果你改了轨道、loop、source 或 consolidate 状态，但 preview 没有变化，通常说明你需要重新 capture。"
+        },
+        {
+          "heading": "5. 已知边界",
+          "body": "当前需要注意的边界包括：capture 之后如果 source 发生变化，Exporter 会阻止继续导出；fresh consolidate 在不同平台上表现不完全一致，尤其 Windows 更建议保存并重开工程后重新 capture；resample 与 bounce 得到的 clips 在 Windows 上也可能存在差异；如果之前保存的导出路径已经失效，界面会保留旧路径显示，但导出会被阻止，直到你重新选择有效目录。"
+        },
+        {
+          "heading": "6. 状态反馈",
+          "body": "Exporter 用三种颜色提示当前状态：红色表示 error，需要先处理问题；绿色表示 success，说明本次导出已经完成；黄色表示 notice，通常是像重名 clip 这样的提醒，不会阻止导出，但值得你注意。"
+        }
+      ]
+    }
+  ]
+}
