@@ -1,0 +1,3 @@
+name = "slite-max-website-main"
+compatibility_date = "2026-05-05"
+pages_build_output_dir = "./dist"
